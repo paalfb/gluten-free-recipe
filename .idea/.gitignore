@@ -1,0 +1,20 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+# Caches and local indexes
+/caches/
+/libraries/
+/modules.xml
+/navEditor.xml
+/assetWizardSettings.xml
+/deploymentTargetDropDown.xml
+/deploymentTargetSelector.xml
+/androidTestResultsUserPreferences.xml
+/migrations.xml
+
+# Run configurations (machine-specific)
+/runConfigurations/
+
+# Misc local state
+*.xml~

@@ -1,0 +1,36 @@
+*.iml
+.gradle/
+local.properties
+
+# Android Studio / IntelliJ
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+/.idea/deploymentTargetDropDown.xml
+/.idea/androidTestResultsUserPreferences.xml
+
+# Build output
+/build
+app/build
+
+# Captures and profiling
+/captures
+*.hprof
+
+# Native build
+.externalNativeBuild
+.cxx
+
+# macOS
+.DS_Store
+
+# Keystore (never commit signing keys)
+*.jks
+*.keystore
+release/
+
+# Generated Room schemas (optional — remove if you want to track schema history)
+app/schemas/

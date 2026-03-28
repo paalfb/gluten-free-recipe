@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.GlutenfreeRecipe" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/green_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/green_200</item>
+        <item name="colorOnPrimaryContainer">#003300</item>
+    </style>
+</resources>

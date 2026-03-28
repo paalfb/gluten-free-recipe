@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Glutenfri bakst</string>
+
+    <!-- Main screen -->
+    <string name="empty_recipes">Ingen oppskrifter ennå.\nTrykk + for å legge til.</string>
+    <string name="empty_with_thickeners">Ingen oppskrifter med fortykningsmidler</string>
+    <string name="empty_without_thickeners">Ingen oppskrifter uten fortykningsmidler</string>
+    <string name="tab_with_thickeners">Med fortykningsmidler</string>
+    <string name="tab_without_thickeners">Uten fortykningsmidler</string>
+    <string name="tab_calendar">Kalender</string>
+    <string name="day_note_hint">Skriv notater for denne dagen…</string>
+    <string name="category_title">Velg kategori</string>
+    <string name="category_all">Alle</string>
+    <string name="add_recipe">Legg til oppskrift</string>
+    <string name="hint_recipe_name">Oppskriftsnavn</string>
+    <string name="add">Legg til</string>
+    <string name="cancel">Avbryt</string>
+
+    <!-- Tabs (used as content descriptions) -->
+    <string name="tab_ingredients">Ingredienser</string>
+    <string name="tab_steps">Fremgangsmåte</string>
+    <string name="tab_tips">Tips</string>
+    <string name="tab_common_mistakes">Vanlige feil</string>
+
+    <!-- Tab content -->
+    <string name="empty_tab">Trykk + for å legge til</string>
+    <string name="add_item">Legg til</string>
+    <string name="hint_item">Nytt element</string>
+    <string name="delete_item">Slett</string>
+    <string name="edit_item">Rediger</string>
+    <string name="hint_tips">Skriv tips her...</string>
+    <string name="done">Ferdig</string>
+    <string name="drag_handle">Dra for å flytte</string>
+
+    <string name="add_ingredient">Legg til ingrediens</string>
+    <string name="hint_ingredient">Ny ingrediens</string>
+
+    <string name="add_step">Legg til steg</string>
+    <string name="hint_step">Nytt steg</string>
+
+    <string name="add_tip">Legg til tips</string>
+    <string name="hint_tip">Nytt tips</string>
+
+    <string name="add_common_mistake">Legg til vanlig feil</string>
+    <string name="hint_common_mistake">Vanlig feil</string>
+
+    <!-- Export / Import -->
+    <string name="action_export">Eksporter oppskrifter</string>
+    <string name="action_export_pdf">Eksporter som PDF</string>
+    <string name="action_import">Importer oppskrifter</string>
+    <string name="action_delete_all">Slett alle oppskrifter</string>
+    <string name="delete_all_confirm_title">Slett alle oppskrifter?</string>
+    <string name="delete_all_confirm_message">Alle oppskrifter vil bli slettet permanent.</string>
+    <string name="action_share_recipe">Del oppskrift</string>
+    <string name="export_subject">Glutenfrie oppskrifter</string>
+    <string name="import_success">%d oppskrift(er) importert</string>
+    <string name="import_error">Kunne ikke lese filen</string>
+
+    <!-- Delete -->
+    <string name="action_delete_recipe">Slett oppskrift</string>
+    <string name="recipe_deleted">Oppskrift slettet</string>
+    <string name="undo">Angre</string>
+    <string name="delete_confirm_title">Slett oppskrift?</string>
+    <string name="delete_confirm_message">"%s" vil bli slettet permanent.</string>
+    <string name="delete">Slett</string>
+
+    <!-- Rename / Edit -->
+    <string name="action_rename_recipe">Gi nytt navn</string>
+    <string name="rename_recipe">Gi oppskriften nytt navn</string>
+    <string name="save">Lagre</string>
+</resources>
