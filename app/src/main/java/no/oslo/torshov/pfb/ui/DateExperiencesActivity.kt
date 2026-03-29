@@ -58,7 +58,6 @@ class DateExperiencesActivity : AppCompatActivity() {
         binding.toolbar.setNavigationOnClickListener { finish() }
 
         adapter = DateExperienceAdapter(
-            displayFormatter = displayFormatter,
             onEdit = { exp -> showEditDialog(exp) },
             onDelete = { exp ->
                 MaterialAlertDialogBuilder(this)
@@ -101,7 +100,10 @@ class DateExperiencesActivity : AppCompatActivity() {
     private fun loadExperiences() {
         lifecycleScope.launch {
             val experiences = dao.getByDate(date)
-            adapter.submitList(experiences)
+            val names = experiences.map { it.recipeId }.toSet()
+                .mapNotNull { id -> recipeDao.getById(id)?.let { id to it.name } }
+                .toMap()
+            adapter.submitList(experiences, names)
             binding.textEmpty.visibility = if (experiences.isEmpty()) View.VISIBLE else View.GONE
         }
     }
@@ -134,15 +136,15 @@ class DateExperiencesActivity : AppCompatActivity() {
 }
 
 class DateExperienceAdapter(
-    private val displayFormatter: DateTimeFormatter,
     private val onEdit: (RecipeExperience) -> Unit,
     private val onDelete: (RecipeExperience) -> Unit
 ) : RecyclerView.Adapter<DateExperienceAdapter.ViewHolder>() {
 
     private var items: List<RecipeExperience> = emptyList()
+    private var recipeNames: Map<Long, String> = emptyMap()
     private val expandedIds = mutableSetOf<Long>()
 
-    fun submitList(list: List<RecipeExperience>) {
+    fun submitList(list: List<RecipeExperience>, names: Map<Long, String>) {
         val diff = androidx.recyclerview.widget.DiffUtil.calculateDiff(object : androidx.recyclerview.widget.DiffUtil.Callback() {
             override fun getOldListSize() = items.size
             override fun getNewListSize() = list.size
@@ -150,6 +152,7 @@ class DateExperienceAdapter(
             override fun areContentsTheSame(o: Int, n: Int) = items[o] == list[n]
         })
         items = list
+        recipeNames = names
         diff.dispatchUpdatesTo(this)
     }
 
@@ -160,13 +163,14 @@ class DateExperienceAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val exp = items[position]
-        holder.binding.textDate.text = exp.note.ifBlank { exp.date }
+        holder.binding.textDate.text = recipeNames[exp.recipeId] ?: exp.recipeId.toString()
         val isExpanded = exp.id in expandedIds
 
         if (exp.note.isNotBlank()) {
             holder.binding.textNote.visibility = View.VISIBLE
             holder.binding.textNote.text = exp.note
             holder.binding.textNote.maxLines = if (isExpanded) Int.MAX_VALUE else 1
+            holder.binding.textNote.requestLayout()
         } else {
             holder.binding.textNote.visibility = View.GONE
         }

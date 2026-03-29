@@ -218,6 +218,7 @@ class ExperienceAdapter(
             holder.binding.textNote.visibility = View.VISIBLE
             holder.binding.textNote.text = exp.note
             holder.binding.textNote.maxLines = if (isExpanded) Int.MAX_VALUE else 1
+            holder.binding.textNote.requestLayout()
         } else {
             holder.binding.textNote.visibility = View.GONE
         }
