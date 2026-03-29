@@ -1,6 +1,5 @@
 package no.oslo.torshov.pfb.ui
 
-import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.LayoutInflater
@@ -26,47 +25,48 @@ import java.time.format.FormatStyle
 import java.util.Locale
 import kotlin.math.abs
 
-class ExperiencesActivity : AppCompatActivity() {
+class DateExperiencesActivity : AppCompatActivity() {
 
     companion object {
-        const val EXTRA_RECIPE_ID = "recipe_id"
-        const val EXTRA_RECIPE_NAME = "recipe_name"
-        const val RESULT_OPEN_CALENDAR_DATE = "open_calendar_date"
+        const val EXTRA_DATE = "date"
     }
 
     private lateinit var binding: ActivityExperiencesBinding
-    private lateinit var adapter: ExperienceAdapter
-    private var recipeId: Long = -1
+    private lateinit var adapter: DateExperienceAdapter
+    private lateinit var date: String
 
     private val dao by lazy { AppDatabase.getInstance(this).recipeExperienceDao() }
+    private val recipeDao by lazy { AppDatabase.getInstance(this).recipeDao() }
     private val displayFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
         .withLocale(Locale.getDefault())
-    private val isoFormatter = DateTimeFormatter.ISO_LOCAL_DATE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExperiencesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        recipeId = intent.getLongExtra(EXTRA_RECIPE_ID, -1)
-        val recipeName = intent.getStringExtra(EXTRA_RECIPE_NAME) ?: ""
+        date = intent.getStringExtra(EXTRA_DATE) ?: run { finish(); return }
+
+        val formattedDate = try {
+            LocalDate.parse(date).format(displayFormatter)
+        } catch (_: Exception) { date }
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.title = getString(R.string.experiences_title)
-        supportActionBar?.subtitle = recipeName
+        supportActionBar?.subtitle = formattedDate
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.toolbar.setNavigationOnClickListener { finish() }
 
-        adapter = ExperienceAdapter(
+        adapter = DateExperienceAdapter(
             displayFormatter = displayFormatter,
-            onEdit = { experience -> showEditDialog(experience) },
-            onDelete = { experience ->
+            onEdit = { exp -> showEditDialog(exp) },
+            onDelete = { exp ->
                 MaterialAlertDialogBuilder(this)
                     .setTitle(R.string.delete_confirm_title)
-                    .setMessage(getString(R.string.delete_confirm_message, experience.date))
+                    .setMessage(getString(R.string.delete_confirm_message, exp.date))
                     .setPositiveButton(R.string.delete) { _, _ ->
                         lifecycleScope.launch {
-                            dao.delete(experience)
+                            dao.delete(exp)
                             loadExperiences()
                         }
                     }
@@ -77,8 +77,7 @@ class ExperiencesActivity : AppCompatActivity() {
 
         binding.recyclerExperiences.layoutManager = LinearLayoutManager(this)
         binding.recyclerExperiences.adapter = adapter
-
-        binding.fabAdd.setOnClickListener { showAddDialog() }
+        binding.fabAdd.visibility = View.GONE
 
         loadExperiences()
     }
@@ -87,8 +86,7 @@ class ExperiencesActivity : AppCompatActivity() {
         GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
             override fun onFling(e1: MotionEvent?, e2: MotionEvent, vX: Float, vY: Float): Boolean {
                 if (e1 != null && vX > 600 && abs(e2.x - e1.x) > 100 && abs(e2.y - e1.y) < 200) {
-                    finish()
-                    return true
+                    finish(); return true
                 }
                 return false
             }
@@ -102,18 +100,10 @@ class ExperiencesActivity : AppCompatActivity() {
 
     private fun loadExperiences() {
         lifecycleScope.launch {
-            val experiences = dao.getForRecipe(recipeId)
+            val experiences = dao.getByDate(date)
             adapter.submitList(experiences)
             binding.textEmpty.visibility = if (experiences.isEmpty()) View.VISIBLE else View.GONE
         }
-    }
-
-    private fun showAddDialog() {
-        val today = LocalDate.now()
-        DatePickerDialog(this, { _, year, month, day ->
-            val date = LocalDate.of(year, month + 1, day).format(isoFormatter)
-            showNoteDialog(date)
-        }, today.year, today.monthValue - 1, today.dayOfMonth).show()
     }
 
     private fun showEditDialog(experience: RecipeExperience) {
@@ -130,7 +120,7 @@ class ExperiencesActivity : AppCompatActivity() {
         layout.addView(input)
 
         MaterialAlertDialogBuilder(this)
-            .setTitle(LocalDate.parse(experience.date, isoFormatter).format(displayFormatter))
+            .setTitle(try { LocalDate.parse(experience.date).format(displayFormatter) } catch (_: Exception) { experience.date })
             .setView(layout)
             .setPositiveButton(R.string.save) { _, _ ->
                 lifecycleScope.launch {
@@ -141,69 +131,32 @@ class ExperiencesActivity : AppCompatActivity() {
             .setNegativeButton(R.string.cancel, null)
             .show()
     }
-
-    private fun showNoteDialog(date: String) {
-        val layout = TextInputLayout(this).apply {
-            hint = getString(R.string.experience_note_hint)
-            setPadding(48, 16, 48, 0)
-        }
-        val input = TextInputEditText(layout.context)
-        input.isSingleLine = false
-        input.minLines = 3
-        layout.addView(input)
-
-        MaterialAlertDialogBuilder(this)
-            .setTitle(LocalDate.parse(date, isoFormatter).format(displayFormatter))
-            .setView(layout)
-            .setPositiveButton(R.string.save) { _, _ ->
-                lifecycleScope.launch {
-                    dao.insert(RecipeExperience(
-                        recipeId = recipeId,
-                        date = date,
-                        note = input.text?.toString()?.trim() ?: ""
-                    ))
-                    loadExperiences()
-                }
-            }
-            .setNegativeButton(R.string.cancel, null)
-            .show()
-    }
 }
 
-class ExperienceAdapter(
+class DateExperienceAdapter(
     private val displayFormatter: DateTimeFormatter,
     private val onEdit: (RecipeExperience) -> Unit,
     private val onDelete: (RecipeExperience) -> Unit
-) : RecyclerView.Adapter<ExperienceAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<DateExperienceAdapter.ViewHolder>() {
 
     private var items: List<RecipeExperience> = emptyList()
+    private val expandedIds = mutableSetOf<Long>()
 
     fun submitList(list: List<RecipeExperience>) {
         items = list
         notifyDataSetChanged()
     }
 
-    private val expandedIds = mutableSetOf<Long>()
+    inner class ViewHolder(val binding: ItemExperienceBinding) : RecyclerView.ViewHolder(binding.root)
 
-    inner class ViewHolder(val binding: ItemExperienceBinding) :
-        RecyclerView.ViewHolder(binding.root)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemExperienceBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
-        )
-        return ViewHolder(binding)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        ViewHolder(ItemExperienceBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val exp = items[position]
-        val localDate = try {
-            LocalDate.parse(exp.date, DateTimeFormatter.ISO_LOCAL_DATE)
-        } catch (_: Exception) { null }
-
-        holder.binding.textDate.text = localDate?.format(displayFormatter) ?: exp.date
-
+        holder.binding.textDate.text = exp.note.ifBlank { exp.date }
         val isExpanded = exp.id in expandedIds
+
         if (exp.note.isNotBlank()) {
             holder.binding.textNote.visibility = View.VISIBLE
             holder.binding.textNote.text = exp.note

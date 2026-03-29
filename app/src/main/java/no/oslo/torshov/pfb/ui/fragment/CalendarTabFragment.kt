@@ -50,10 +50,13 @@ class CalendarTabFragment : Fragment() {
                 try {
                     val local = LocalDate.parse(date)
                     calendarView.scrollToMonth(YearMonth.of(local.year, local.month))
-                    DayExperiencesBottomSheet.newInstance(date)
-                        .show(childFragmentManager, "day_experiences_from_nav")
-                } catch (_: Exception) { /* ignore */
-                }
+                    val intent = android.content.Intent(
+                        requireContext(),
+                        no.oslo.torshov.pfb.ui.DateExperiencesActivity::class.java
+                    )
+                    intent.putExtra(no.oslo.torshov.pfb.ui.DateExperiencesActivity.EXTRA_DATE, date)
+                    startActivity(intent)
+                } catch (_: Exception) { /* ignore */ }
                 viewModel.pendingCalendarDate.value = null
             }
         }
@@ -91,9 +94,13 @@ class CalendarTabFragment : Fragment() {
 
             init {
                 view.setOnClickListener {
-                    if (day.position == DayPosition.MonthDate && day.date in fragment.experienceDates) {
-                        DayExperiencesBottomSheet.newInstance(day.date.toString())
-                            .show(fragment.childFragmentManager, "day_experiences")
+                    if (day.position == DayPosition.MonthDate) {
+                        val intent = android.content.Intent(
+                            fragment.requireContext(),
+                            no.oslo.torshov.pfb.ui.DateExperiencesActivity::class.java
+                        )
+                        intent.putExtra(no.oslo.torshov.pfb.ui.DateExperiencesActivity.EXTRA_DATE, day.date.toString())
+                        fragment.startActivity(intent)
                     }
                 }
             }

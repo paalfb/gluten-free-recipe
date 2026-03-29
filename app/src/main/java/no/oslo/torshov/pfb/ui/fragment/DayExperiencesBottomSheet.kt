@@ -61,9 +61,11 @@ class DayExperiencesBottomSheet : BottomSheetDialogFragment() {
                     lifecycleScope.launch {
                         expDao.delete(exp)
                         (binding.recyclerExperiences.adapter as? DayExperienceAdapter)?.removeAt(index)
+                        binding.tvEmpty.visibility = if (items.size == 1) View.VISIBLE else View.GONE
                     }
                 }
             )
+            binding.tvEmpty.visibility = if (items.isEmpty()) View.VISIBLE else View.GONE
         }
     }
 

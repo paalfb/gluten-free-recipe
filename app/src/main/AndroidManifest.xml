@@ -36,6 +36,11 @@
             android:parentActivityName=".ui.MainActivity" />
 
         <activity
+            android:name=".ui.DateExperiencesActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.CalendarActivity" />
+
+        <activity
             android:name=".ui.CalendarActivity"
             android:exported="false"
             android:parentActivityName=".ui.MainActivity" />
