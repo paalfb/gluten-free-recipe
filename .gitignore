@@ -30,6 +30,7 @@ app/build
 # Keystore (never commit signing keys)
 *.jks
 *.keystore
+keystore.properties
 release/
 
 # Generated Room schemas (optional — remove if you want to track schema history)
