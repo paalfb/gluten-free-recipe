@@ -60,6 +60,7 @@ class RecipeDetailActivity : AppCompatActivity() {
         viewModel.loadRecipe(recipeId)
         viewModel.recipeName.observe(this) { binding.toolbar.title = it }
         viewModel.category.observe(this) { binding.categoryChip.text = RecipeCategory.displayName(this, it) }
+        viewModel.isFavourite.observe(this) { invalidateOptionsMenu() }
         binding.categoryChip.setOnClickListener { showCategoryDialog() }
 
         binding.viewPager.adapter = RecipePagerAdapter(this)
@@ -117,9 +118,19 @@ class RecipeDetailActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        val isFav = viewModel.isFavourite.value ?: false
+        menu.findItem(R.id.action_toggle_favourite)?.title = getString(
+            if (isFav) R.string.action_remove_favourite else R.string.action_add_favourite
+        )
+        return super.onPrepareOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.action_share_recipe -> { shareRecipe(); true }
         R.id.action_rename_recipe -> { showRenameDialog(); true }
+        R.id.action_toggle_favourite -> { viewModel.toggleFavourite(); true }
+        R.id.action_change_emoji -> { showChangeEmojiDialog(); true }
         R.id.action_experiences -> { openExperiences(); true }
         R.id.action_delete_recipe -> { confirmDelete(); true }
         else -> super.onOptionsItemSelected(item)
@@ -130,6 +141,80 @@ class RecipeDetailActivity : AppCompatActivity() {
         intent.putExtra(ExperiencesActivity.EXTRA_RECIPE_ID, recipeId)
         intent.putExtra(ExperiencesActivity.EXTRA_RECIPE_NAME, viewModel.recipeName.value ?: "")
         experiencesLauncher.launch(intent)
+    }
+
+    private fun showChangeEmojiDialog() {
+        val emojis = listOf("🍞","🥐","🥖","🥯","🫓","🧁","🎂","🍰","🍩","🍪","🧇","🥞","🥗","🍕","🫕","🥨","🍫","🌾","🔥")
+        val container = android.widget.LinearLayout(this).apply {
+            orientation = android.widget.LinearLayout.VERTICAL
+            setPadding(
+                (24 * resources.displayMetrics.density).toInt(), 0,
+                (24 * resources.displayMetrics.density).toInt(), 0
+            )
+        }
+        val scrollRow = android.widget.HorizontalScrollView(this)
+        val row = android.widget.LinearLayout(this).apply { orientation = android.widget.LinearLayout.HORIZONTAL }
+        val dp44 = (44 * resources.displayMetrics.density).toInt()
+        val dp4  = (4  * resources.displayMetrics.density).toInt()
+        val dp2  = (2  * resources.displayMetrics.density).toInt()
+        val current = viewModel.currentEmoji
+        val selectedEmojis = emojis.filter { it in current }.toMutableList()
+        val allBtns = mutableListOf<android.widget.TextView>()
+
+        fun makeSelectedBackground(): android.graphics.drawable.GradientDrawable {
+            val tv = android.util.TypedValue()
+            theme.resolveAttribute(com.google.android.material.R.attr.colorPrimary, tv, true)
+            return android.graphics.drawable.GradientDrawable().apply {
+                shape = android.graphics.drawable.GradientDrawable.RECTANGLE
+                cornerRadius = dp4.toFloat()
+                setStroke(dp2, tv.data)
+                setColor(android.graphics.Color.TRANSPARENT)
+            }
+        }
+
+        fun refreshBackgrounds() {
+            allBtns.forEach { btn ->
+                btn.background = if (btn.tag in selectedEmojis || (btn.tag == "" && selectedEmojis.isEmpty()))
+                    makeSelectedBackground() else null
+            }
+        }
+
+        fun toggleEmoji(e: String) {
+            if (e == "") { selectedEmojis.clear() }
+            else if (e in selectedEmojis) { selectedEmojis.remove(e) }
+            else if (selectedEmojis.size < 2) { selectedEmojis.add(e) }
+            refreshBackgrounds()
+        }
+
+        val noneBtn = android.widget.TextView(this).apply {
+            text = "—"; textSize = 20f; tag = ""
+            gravity = android.view.Gravity.CENTER
+            layoutParams = android.widget.LinearLayout.LayoutParams(dp44, dp44).also { it.marginEnd = dp4 }
+        }
+        allBtns.add(noneBtn)
+        row.addView(noneBtn)
+        noneBtn.setOnClickListener { toggleEmoji("") }
+
+        emojis.forEach { e ->
+            val btn = android.widget.TextView(this).apply {
+                text = e; textSize = 24f; tag = e
+                gravity = android.view.Gravity.CENTER
+                layoutParams = android.widget.LinearLayout.LayoutParams(dp44, dp44).also { it.marginEnd = dp4 }
+            }
+            allBtns.add(btn)
+            row.addView(btn)
+            btn.setOnClickListener { toggleEmoji(e) }
+        }
+        refreshBackgrounds()
+        scrollRow.addView(row)
+        container.addView(scrollRow)
+
+        com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.action_change_emoji)
+            .setView(container)
+            .setPositiveButton(R.string.save) { _, _ -> viewModel.updateEmoji(selectedEmojis.joinToString("")) }
+            .setNegativeButton(R.string.cancel, null)
+            .show()
     }
 
     private fun showCategoryDialog() {

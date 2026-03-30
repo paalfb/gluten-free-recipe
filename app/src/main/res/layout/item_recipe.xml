@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="4dp"
-    app:cardElevation="1dp"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="?attr/colorSurfaceVariant"
     app:strokeWidth="0dp">
 
     <LinearLayout
@@ -17,38 +18,58 @@
         android:padding="16dp">
 
         <TextView
+            android:id="@+id/textEmoji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="32dp"
+            android:textSize="20sp"
+            android:gravity="center" />
+
+        <TextView
             android:id="@+id/textRecipeName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginStart="8dp"
             android:textAppearance="?attr/textAppearanceTitleMedium" />
 
-        <ImageView
-            android:id="@+id/iconExperiences"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:padding="14dp"
-            android:src="@drawable/ic_event_note"
-            android:contentDescription="@null"
-            android:tint="?attr/colorSecondary"
-            android:visibility="gone" />
-
-        <ImageView
-            android:id="@+id/iconTested"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_done"
-            android:contentDescription="@null"
-            android:tint="?attr/colorPrimary"
-            android:visibility="gone" />
-
-        <ImageView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_chevron_right"
-            android:contentDescription="@null"
-            android:tint="?attr/colorOnSurfaceVariant" />
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/iconFavourite"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="6dp"
+                android:src="@drawable/ic_star_outline"
+                android:contentDescription="@null"
+                android:tint="#FFC107"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/iconExperiences"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="6dp"
+                android:src="@drawable/ic_event_note"
+                android:contentDescription="@null"
+                android:tint="?attr/colorSecondary"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/iconTested"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="6dp"
+                android:src="@drawable/ic_done"
+                android:contentDescription="@null"
+                android:tint="?attr/colorPrimary"
+                android:visibility="gone" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

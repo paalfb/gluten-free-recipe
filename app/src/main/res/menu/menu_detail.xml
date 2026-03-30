@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/action_experiences"
+        android:title="@string/action_experiences" />
+    <item
+        android:id="@+id/action_toggle_favourite"
+        android:title="@string/action_add_favourite" />
+    <item
+        android:id="@+id/action_change_emoji"
+        android:title="@string/action_change_emoji" />
+    <item
         android:id="@+id/action_share_recipe"
         android:title="@string/action_share_recipe" />
     <item
         android:id="@+id/action_rename_recipe"
         android:title="@string/action_rename_recipe" />
-    <item
-        android:id="@+id/action_experiences"
-        android:title="@string/action_experiences" />
     <item
         android:id="@+id/action_delete_recipe"
         android:title="@string/action_delete_recipe" />

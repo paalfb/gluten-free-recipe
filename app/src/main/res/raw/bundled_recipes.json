@@ -2,7 +2,7 @@
   "version": 1,
   "recipes": [
     {
-      "name": "🥯 Kanelboller (E415,E464)",
+      "name": "Kanelboller (E415,E464)",
       "category": "Boller",
       "ingredients": [
         "500 g Semper Mix Fiber melblanding",
@@ -41,10 +41,11 @@
         "Overknaing – glutenfri deig blir gummiaktig om man elter for lenge.",
         "For kort hevetid – bollene blir kompakte.",
         "For høy temperatur – bollene blir brent utenpå og rå inni."
-      ]
+      ],
+      "emoji": "🥯"
     },
     {
-      "name": "🍞 Brød (E415)",
+      "name": "Brød (E415)",
       "category": "Brød",
       "ingredients": [
         "— Tørre —",
@@ -77,10 +78,11 @@
         "For lite væske — gir tørt og kompakt brød.",
         "Utelate egget — gir dårligere volum og struktur uten E464.",
         "Overheving — brødet kollapser lettere uten E464."
-      ]
+      ],
+      "emoji": "🍞"
     },
     {
-      "name": "🍞 Ekstra luftig brød (E415, E464)",
+      "name": "Ekstra luftig brød (E415, E464)",
       "category": "Brød",
       "ingredients": [
         "— Tørre —",
@@ -117,10 +119,11 @@
         "For fast deig gir kompakt brød.",
         "For kort miksing gir dårlig struktur.",
         "Overheving — brødet kollapser i ovnen."
-      ]
+      ],
+      "emoji": "🍞"
     },
     {
-      "name": "🍞 Brød (E415, E464)",
+      "name": "Brød (E415, E464)",
       "category": "Brød",
       "ingredients": [
         "— Tørre —",
@@ -148,10 +151,11 @@
         "E415 gir bedre binding og mindre smuldring.",
         "Litt frø eller kjerner kan tilsettes for ekstra smak."
       ],
-      "commonMistakes": []
+      "commonMistakes": [],
+      "emoji": "🍞"
     },
     {
-      "name": "🌾 Grovt og fiberrikt brød (E415)",
+      "name": "Grovt og fiberrikt brød (E415)",
       "category": "Brød",
       "ingredients": [
         "— Tørre —",
@@ -191,10 +195,11 @@
         "Ikke avkjøle brødet helt før skjæring — da faller det fra hverandre.",
         "Kutte ned på væsken — frø trenger ekstra fuktighet.",
         "Forvente like luftig resultat som lyst brød — dette er et kompakt grovbrød."
-      ]
+      ],
+      "emoji": "🌾"
     },
     {
-      "name": "🌾🍞 Grovt & luftig brød (E415)",
+      "name": "Grovt & luftig brød (E415)",
       "category": "Brød",
       "ingredients": [
         "— Tørre —",
@@ -229,10 +234,11 @@
         "For enda grovere: tilsett 20–30 g ekstra frø (mister litt luft).",
         "For saftigere brød: tilsett 2 ss yoghurt eller kesam."
       ],
-      "commonMistakes": []
+      "commonMistakes": [],
+      "emoji": "🌾🍞"
     },
     {
-      "name": "🌾🔥 Elite grovt & luftig brød (E415)",
+      "name": "Elite grovt & luftig brød (E415)",
       "category": "Brød",
       "ingredients": [
         "— Fordeig —",
@@ -273,10 +279,11 @@
         "1 ts fiberhusk i tillegg gir bedre struktur.",
         "Bytt ut 0,5 dl vann med kullsyrevann for mer bobler."
       ],
-      "commonMistakes": []
+      "commonMistakes": [],
+      "emoji": "🌾🔥"
     },
     {
-      "name": "🫓  Flatbrød",
+      "name": "Flatbrød",
       "category": "Flatbrød",
       "ingredients": [
         "300 g Semper Mix Fiber melblanding",
@@ -303,10 +310,11 @@
         "For høy varme brenner brødet før det tørker.",
         "For lite hviletid gjør deigen vanskelig å kjevle.",
         "For mye mel under kjevling kan gjøre flatbrødet tørt."
-      ]
+      ],
+      "emoji": "🫓"
     },
     {
-      "name": "\uD83E\uDED3 Naan  (E415,E464)",
+      "name": "Naan  (E415,E464)",
       "category": "Brød",
       "ingredients": [
         "400 g Semper Mix Fiber melblanding",
@@ -342,10 +350,11 @@
         "For tørr deig – gir harde naan.",
         "For lav varme – gir bleke og tørre brød.",
         "For tykk utkjevling – blir tung og lite luftig."
-      ]
+      ],
+      "emoji": "🫓"
     },
     {
-      "name": "\uD83E\uDED3 Naan (psyllium)",
+      "name": "Naan (psyllium)",
       "category": "Brød",
       "ingredients": [
         "400 g Semper Mix Fiber melblanding",
@@ -379,10 +388,11 @@
         "For tørr deig – gir harde naan.",
         "For lav steketemperatur – gir bleke og tørre brød.",
         "For tykk utkjevling – blir tung og lite luftig."
-      ]
+      ],
+      "emoji": "🫓"
     },
     {
-      "name": "🥞 Pannekaker (rismel)",
+      "name": "Pannekaker (rismel)",
       "category": "Pannekaker",
       "ingredients": [
         "3 egg",
@@ -406,10 +416,11 @@
       "commonMistakes": [
         "For høy varme gjør at pannekakene blir for mørke utenpå og rå inni",
         "Ikke la røren hvile lenge nok — rismelet trenger tid til å suge til seg væske"
-      ]
+      ],
+      "emoji": "🥞"
     },
     {
-      "name": "🥞 Pannekaker (Mix Fiber)",
+      "name": "Pannekaker (Mix Fiber)",
       "category": "Pannekaker",
       "ingredients": [
         "3 egg",
@@ -437,10 +448,11 @@
         "For høy varme – de blir fort brent utenpå.",
         "Ikke vispe godt nok – kan gi klumper.",
         "Ikke la røren hvile – dårlig tekstur."
-      ]
+      ],
+      "emoji": "🥞"
     },
     {
-      "name": "🥞 Pannekaker",
+      "name": "Pannekaker",
       "category": "Pannekaker",
       "ingredients": [
         "3 egg",
@@ -470,10 +482,11 @@
         "For høy varme brenner pannekakene.",
         "Ikke la røren hvile – gir dårligere tekstur.",
         "For lite fett i pannen gjør at de setter seg fast."
-      ]
+      ],
+      "emoji": "🥞"
     },
     {
-      "name": "🥞 Fluffy pannekaker",
+      "name": "Fluffy pannekaker",
       "category": "Pannekaker",
       "ingredients": [
         "2 egg",
@@ -505,10 +518,11 @@
         "For høy varme gjør dem brent utenpå og rå inni.",
         "For mye røring gir kompakte pancakes.",
         "For lite bakepulver gir dårlig heving."
-      ]
+      ],
+      "emoji": "🥞"
     },
     {
-      "name": "🥯 Rundstykker - best for glutenfri (E415, E464)",
+      "name": "Rundstykker - best for glutenfri (E415, E464)",
       "category": "Rundstykker",
       "ingredients": [
         "— Tørre —",
@@ -539,10 +553,11 @@
         "Ikke kna for hånd — bruk maskin.",
         "Ikke tilsett for mye mel — da blir det tørt."
       ],
-      "commonMistakes": []
+      "commonMistakes": [],
+      "emoji": "🥯"
     },
     {
-      "name": "🥯🌾 Elite grove & luftige rundstykker (E415)",
+      "name": "Elite grove & luftige rundstykker (E415)",
       "category": "Rundstykker",
       "ingredients": [
         "— Fordeig —",
@@ -583,10 +598,11 @@
         "Dryss frø på toppen etter forming.",
         "For enda mer luft: bytt ut 0,5 dl vann med kullsyrevann."
       ],
-      "commonMistakes": []
+      "commonMistakes": [],
+      "emoji": "🥯🌾"
     },
     {
-      "name": "🥯 Rundstykker (E415)",
+      "name": "Rundstykker (E415)",
       "category": "Rundstykker",
       "ingredients": [
         "500 g Semper Mix Fiber melblanding",
@@ -618,10 +634,11 @@
         "For kort elting – xantangummi trenger tid for å binde strukturen.",
         "Oversteking som gjør rundstykkene tørre.",
         "Bruke for varmt vann som dreper gjæren."
-      ]
+      ],
+      "emoji": "🥯"
     },
     {
-      "name": "🥯 Rundstykker (psyllium)",
+      "name": "Rundstykker (psyllium)",
       "category": "Rundstykker",
       "ingredients": [
         "500 g Semper Mix Fiber melblanding",
@@ -655,10 +672,11 @@
         "For tørr deig – glutenfri bakst trenger mer væske.",
         "For kort hevetid som gir kompakte rundstykker.",
         "For høy temperatur som gir hard skorpe før innsiden er ferdig."
-      ]
+      ],
+      "emoji": "🥯"
     },
     {
-      "name": "🥯 Rundstykker (chiafrø)",
+      "name": "Rundstykker (chiafrø)",
       "category": "Rundstykker",
       "ingredients": [
         "500 g Semper Mix Fiber melblanding",
@@ -692,10 +710,11 @@
         "Tilsette for mye mel – deigen skal være løsere enn vanlig gjærdeig.",
         "For kort eltetid som gir ujevnt resultat.",
         "For lite steketid som gir rå kjerne."
-      ]
+      ],
+      "emoji": "🥯"
     },
     {
-      "name": "🥯 Rundstykker (enkle)",
+      "name": "Rundstykker (enkle)",
       "category": "Rundstykker",
       "ingredients": [
         "500 g Semper Mix Fiber melblanding",
@@ -725,10 +744,11 @@
         "Bruke for varmt vann som kan ødelegge gjæren.",
         "For kort hevetid som gir kompakt resultat.",
         "Ikke røre deigen lenge nok til å utvikle struktur."
-      ]
+      ],
+      "emoji": "🥯"
     },
     {
-      "name": "🥯 Rundstykker (E415,E464)",
+      "name": "Rundstykker (E415,E464)",
       "category": "Rundstykker",
       "ingredients": [
         "500 g Semper Mix Fiber melblanding",
@@ -760,10 +780,11 @@
         "For lite væske gir tørre rundstykker.",
         "For kort eltetid gir dårlig struktur.",
         "Oversteking kan gjøre rundstykkene harde."
-      ]
+      ],
+      "emoji": "🥯"
     },
     {
-      "name": "🥐 Scones",
+      "name": "Scones",
       "category": "Scones",
       "ingredients": [
         "300 g Semper Mix Fiber melblanding",
@@ -794,10 +815,11 @@
         "For mye røring – gjør dem kompakte.",
         "For lang steketid – gjør dem tørre.",
         "For lite bakepulver – gir dårlig heving."
-      ]
+      ],
+      "emoji": "🥐"
     },
     {
-      "name": "🧇 Vafler",
+      "name": "Vafler",
       "category": "Vafler",
       "ingredients": [
         "3 egg",
@@ -827,7 +849,8 @@
         "For lite steketid gir myke og ustekte vafler.",
         "For høy varme kan brenne vaflene.",
         "Ikke la røren hvile – gir dårligere resultat."
-      ]
+      ],
+      "emoji": "🧇"
     }
   ]
 }

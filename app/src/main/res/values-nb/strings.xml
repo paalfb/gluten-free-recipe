@@ -6,9 +6,11 @@
     <string name="empty_recipes">Ingen oppskrifter ennå.\nTrykk + for å legge til.</string>
     <string name="empty_with_thickeners">Ingen oppskrifter med fortykningsmidler</string>
     <string name="empty_without_thickeners">Ingen oppskrifter uten fortykningsmidler</string>
-    <string name="tab_with_thickeners">Med fortykningsmidler</string>
-    <string name="tab_without_thickeners">Uten fortykningsmidler</string>
+    <string name="empty_favourites">Ingen favoritter ennå.\nTrykk stjernen for å legge til.</string>
+    <string name="tab_with_thickeners">+ konsistensmidler</string>
+    <string name="tab_without_thickeners">− konsistensmidler</string>
     <string name="tab_calendar">Kalender</string>
+    <string name="tab_favourites">Favoritter</string>
     <string name="day_note_hint">Skriv notater for denne dagen…</string>
     <string name="category_title">Velg kategori</string>
     <string name="category_all">Alle</string>
@@ -25,6 +27,7 @@
     <string name="category_other">Annet</string>
     <string name="add_recipe">Legg til oppskrift</string>
     <string name="hint_recipe_name">Oppskriftsnavn</string>
+    <string name="hint_emoji">Velg ikon (valgfritt)</string>
     <string name="add">Legg til</string>
     <string name="cancel">Avbryt</string>
 
@@ -80,6 +83,9 @@
 
     <!-- Rename / Edit -->
     <string name="action_rename_recipe">Gi nytt navn</string>
+    <string name="action_change_emoji">Endre ikon</string>
+    <string name="action_add_favourite">Legg til i favoritter</string>
+    <string name="action_remove_favourite">Fjern fra favoritter</string>
     <string name="action_experiences">Erfaringer</string>
     <string name="experiences_title">Erfaringer</string>
     <string name="experience_add">Legg til erfaring</string>

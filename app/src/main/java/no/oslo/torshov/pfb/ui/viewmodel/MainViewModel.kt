@@ -61,9 +61,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun addRecipe(name: String) {
+    fun addRecipe(name: String, emoji: String = "") {
         viewModelScope.launch {
-            repository.add(Recipe(name = name))
+            repository.add(Recipe(name = name, emoji = emoji))
             _recipes.value = repository.getAll()
         }
     }
@@ -97,6 +97,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun toggleTested(recipe: Recipe) {
         viewModelScope.launch {
             repository.update(recipe.copy(tested = !recipe.tested))
+            _recipes.value = repository.getAll()
+        }
+    }
+
+    fun toggleFavourite(recipe: Recipe) {
+        viewModelScope.launch {
+            repository.update(recipe.copy(favourite = !recipe.favourite))
             _recipes.value = repository.getAll()
         }
     }

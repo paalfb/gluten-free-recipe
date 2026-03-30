@@ -16,6 +16,7 @@ object RecipeJsonSerializer {
         for (recipe in recipes) {
             array.put(JSONObject().apply {
                 put("name", recipe.name)
+                put("emoji", recipe.emoji)
                 put("category", recipe.category)
                 put("ingredients", JSONArray(recipe.ingredients))
                 put("steps", JSONArray(recipe.steps))
@@ -33,6 +34,7 @@ object RecipeJsonSerializer {
             val obj = array.getJSONObject(i)
             Recipe(
                 name = obj.getString("name"),
+                emoji = obj.optString("emoji", ""),
                 category = obj.optString("category", RecipeCategory.OTHER),
                 ingredients = obj.getJSONArray("ingredients").toMutableStringList(),
                 steps = obj.getJSONArray("steps").toMutableStringList(),

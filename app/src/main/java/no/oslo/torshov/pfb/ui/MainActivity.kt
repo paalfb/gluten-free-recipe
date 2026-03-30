@@ -46,11 +46,35 @@ class MainActivity : AppCompatActivity() {
         val pagerAdapter = MainPagerAdapter(this)
         binding.viewPager.adapter = pagerAdapter
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = getString(when (position) {
-                0 -> R.string.tab_with_thickeners
-                else -> R.string.tab_without_thickeners
-            })
+            if (position == 2) {
+                val tv = android.widget.TextView(this).apply {
+                    text = "⭐"
+                    textSize = 16f
+                    setPadding(0, 0, 0, 0)
+                    gravity = android.view.Gravity.CENTER
+                }
+                tab.setCustomView(tv)
+            } else {
+                tab.text = when (position) {
+                    0 -> getString(R.string.tab_with_thickeners)
+                    else -> getString(R.string.tab_without_thickeners)
+                }
+            }
         }.attach()
+
+        val starTabDp = (48 * resources.displayMetrics.density).toInt()
+        binding.tabLayout.post {
+            val tabStrip = binding.tabLayout.getChildAt(0) as? android.widget.LinearLayout ?: return@post
+            val totalWidth = binding.tabLayout.width
+            val textTabWidth = (totalWidth - starTabDp) / 2
+            for (i in 0 until tabStrip.childCount) {
+                tabStrip.getChildAt(i).layoutParams =
+                    tabStrip.getChildAt(i).layoutParams.apply {
+                        width = if (i == 2) starTabDp else textTabWidth
+                    }
+            }
+            tabStrip.requestLayout()
+        }
 
         viewModel.loadBundledRecipes()
         binding.fab.setOnClickListener { showAddRecipeDialog() }
@@ -175,6 +199,66 @@ class MainActivity : AppCompatActivity() {
     private fun showAddRecipeDialog() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_add_recipe, null)
         val nameInput = dialogView.findViewById<TextInputEditText>(R.id.editRecipeName)
+        val emojiContainer = dialogView.findViewById<android.widget.LinearLayout>(R.id.emojiContainer)
+
+        val emojis = listOf("🍞","🥐","🥖","🥯","🫓","🧁","🎂","🍰","🍩","🍪","🧇","🥞","🥗","🍕","🫕","🥨","🍫","🌾","🔥")
+        val selectedEmojis = mutableListOf<String>()
+
+        val dp44 = (44 * resources.displayMetrics.density).toInt()
+        val dp4  = (4  * resources.displayMetrics.density).toInt()
+        val dp2  = (2  * resources.displayMetrics.density).toInt()
+
+        fun makeSelectedBackground(): android.graphics.drawable.GradientDrawable {
+            val tv = android.util.TypedValue()
+            theme.resolveAttribute(com.google.android.material.R.attr.colorPrimary, tv, true)
+            return android.graphics.drawable.GradientDrawable().apply {
+                shape = android.graphics.drawable.GradientDrawable.RECTANGLE
+                cornerRadius = dp4.toFloat()
+                setStroke(dp2, tv.data)
+                setColor(android.graphics.Color.TRANSPARENT)
+            }
+        }
+
+        fun refreshBackgrounds(all: List<android.widget.TextView>) {
+            all.forEach { btn ->
+                btn.background = if (btn.tag in selectedEmojis || (btn.tag == "" && selectedEmojis.isEmpty()))
+                    makeSelectedBackground() else null
+            }
+        }
+
+        fun toggleEmoji(e: String, all: List<android.widget.TextView>) {
+            if (e == "") { selectedEmojis.clear() }
+            else if (e in selectedEmojis) { selectedEmojis.remove(e) }
+            else if (selectedEmojis.size < 2) { selectedEmojis.add(e) }
+            refreshBackgrounds(all)
+        }
+
+        // "none" button
+        val noneBtn = android.widget.TextView(this).apply {
+            text = "—"
+            tag = ""
+            textSize = 20f
+            gravity = android.view.Gravity.CENTER
+            layoutParams = android.widget.LinearLayout.LayoutParams(dp44, dp44).also { it.marginEnd = dp4 }
+            background = makeSelectedBackground() // selected by default (none)
+        }
+
+        val allButtons = mutableListOf(noneBtn)
+        emojiContainer.addView(noneBtn)
+
+        emojis.forEach { e ->
+            val btn = android.widget.TextView(this).apply {
+                text = e
+                tag = e
+                textSize = 24f
+                gravity = android.view.Gravity.CENTER
+                layoutParams = android.widget.LinearLayout.LayoutParams(dp44, dp44).also { it.marginEnd = dp4 }
+            }
+            emojiContainer.addView(btn)
+            allButtons.add(btn)
+            btn.setOnClickListener { toggleEmoji(e, allButtons) }
+        }
+        noneBtn.setOnClickListener { toggleEmoji("", allButtons) }
 
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.add_recipe)
@@ -182,7 +266,7 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButton(R.string.add) { _, _ ->
                 val name = nameInput.text?.toString()?.trim()
                 if (!name.isNullOrEmpty()) {
-                    viewModel.addRecipe(name)
+                    viewModel.addRecipe(name, selectedEmojis.joinToString(""))
                 }
             }
             .setNegativeButton(R.string.cancel, null)

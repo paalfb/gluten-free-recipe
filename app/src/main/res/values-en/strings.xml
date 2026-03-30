@@ -6,9 +6,11 @@
     <string name="empty_recipes">No recipes yet.\nTap + to add one.</string>
     <string name="empty_with_thickeners">No recipes with thickeners</string>
     <string name="empty_without_thickeners">No recipes without thickeners</string>
-    <string name="tab_with_thickeners">With thickeners</string>
-    <string name="tab_without_thickeners">Without thickeners</string>
+    <string name="empty_favourites">No favourites yet.\nTap the star to add one.</string>
+    <string name="tab_with_thickeners">+ stabilisers</string>
+    <string name="tab_without_thickeners">− stabilisers</string>
     <string name="tab_calendar">Calendar</string>
+    <string name="tab_favourites">Favourites</string>
     <string name="day_note_hint">Write notes for this day…</string>
     <string name="category_title">Select category</string>
     <string name="category_all">All</string>
@@ -25,6 +27,7 @@
     <string name="category_other">Other</string>
     <string name="add_recipe">Add recipe</string>
     <string name="hint_recipe_name">Recipe name</string>
+    <string name="hint_emoji">Choose icon (optional)</string>
     <string name="add">Add</string>
     <string name="cancel">Cancel</string>
 
@@ -80,6 +83,9 @@
 
     <!-- Rename / Edit -->
     <string name="action_rename_recipe">Rename</string>
+    <string name="action_change_emoji">Change icon</string>
+    <string name="action_add_favourite">Add to favourites</string>
+    <string name="action_remove_favourite">Remove from favourites</string>
     <string name="action_experiences">Experiences</string>
     <string name="experiences_title">Experiences</string>
     <string name="experience_add">Add experience</string>

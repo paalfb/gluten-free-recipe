@@ -10,6 +10,8 @@ data class Recipe(
     val name: String,
     val category: String = RecipeCategory.OTHER,
     val tested: Boolean = false,
+    val favourite: Boolean = false,
+    val emoji: String = "",
     val ingredients: MutableList<String> = mutableListOf(),
     val steps: MutableList<String> = mutableListOf(),
     val tips: MutableList<String> = mutableListOf(),

@@ -23,6 +23,11 @@ class RecipeDetailViewModel(application: Application) : AndroidViewModel(applica
     private val _category = MutableLiveData<String>()
     val category: LiveData<String> = _category
 
+    private val _isFavourite = MutableLiveData<Boolean>(false)
+    val isFavourite: LiveData<Boolean> = _isFavourite
+
+    val currentEmoji: String get() = if (::recipe.isInitialized) recipe.emoji else ""
+
     private val _ingredients = MutableLiveData<List<String>>(emptyList())
     private val _steps = MutableLiveData<List<String>>(emptyList())
     private val _tips = MutableLiveData<List<String>>(emptyList())
@@ -40,6 +45,7 @@ class RecipeDetailViewModel(application: Application) : AndroidViewModel(applica
             recipe = repository.getById(recipeId) ?: return@launch
             _recipeName.value = recipe.name
             _category.value = recipe.category
+            _isFavourite.value = recipe.favourite
             _ingredients.value = recipe.ingredients.toList()
             _steps.value = recipe.steps.toList()
             _tipsText.value = recipe.tips.joinToString("\n")
@@ -178,6 +184,19 @@ class RecipeDetailViewModel(application: Application) : AndroidViewModel(applica
         if (!::recipe.isInitialized) return
         recipe = recipe.copy(category = newCategory)
         _category.value = newCategory
+        viewModelScope.launch { repository.update(recipe) }
+    }
+
+    fun toggleFavourite() {
+        if (!::recipe.isInitialized) return
+        recipe = recipe.copy(favourite = !recipe.favourite)
+        _isFavourite.value = recipe.favourite
+        viewModelScope.launch { repository.update(recipe) }
+    }
+
+    fun updateEmoji(emoji: String) {
+        if (!::recipe.isInitialized) return
+        recipe = recipe.copy(emoji = emoji)
         viewModelScope.launch { repository.update(recipe) }
     }
 }
