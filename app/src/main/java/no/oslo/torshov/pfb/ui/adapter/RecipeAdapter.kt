@@ -11,9 +11,7 @@ import no.oslo.torshov.pfb.databinding.ItemRecipeBinding
 
 class RecipeAdapter(
     private val onClick: (Recipe) -> Unit,
-    private val onLongClick: (Recipe) -> Unit,
-    private val onExperiencesClick: (Recipe) -> Unit,
-    private val onFavouriteClick: (Recipe) -> Unit
+    private val onExperiencesClick: (Recipe) -> Unit
 ) : ListAdapter<Recipe, RecipeAdapter.ViewHolder>(DiffCallback()) {
 
     var recipesWithExperiences: Set<Long> = emptySet()
@@ -44,18 +42,12 @@ class RecipeAdapter(
             }
             binding.textEmoji.text = displayEmoji
             binding.textRecipeName.text = displayName
-            binding.iconTested.visibility = if (recipe.tested && recipe.id !in recipesWithExperiences) android.view.View.VISIBLE else android.view.View.GONE
             binding.iconExperiences.visibility = if (recipe.id in recipesWithExperiences) android.view.View.VISIBLE else android.view.View.GONE
             binding.iconExperiences.setOnClickListener { onExperiencesClick(recipe) }
-            binding.iconFavourite.visibility = if (recipe.favourite) android.view.View.VISIBLE else android.view.View.GONE
-            binding.iconFavourite.setImageResource(R.drawable.ic_star)
-            binding.iconFavourite.setColorFilter(android.graphics.Color.parseColor("#FFC107"))
-            binding.iconFavourite.setOnClickListener { onFavouriteClick(recipe) }
+            binding.iconFavourite.setImageResource(R.drawable.ic_star_circle)
+            binding.iconFavourite.visibility =
+                if (recipe.favourite) android.view.View.VISIBLE else android.view.View.GONE
             binding.root.setOnClickListener { onClick(recipe) }
-            binding.root.setOnLongClickListener {
-                if (recipe.id !in recipesWithExperiences) { onLongClick(recipe) }
-                true
-            }
         }
     }
 

@@ -46,32 +46,19 @@ class MainActivity : AppCompatActivity() {
         val pagerAdapter = MainPagerAdapter(this)
         binding.viewPager.adapter = pagerAdapter
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            if (position == 2) {
-                val tv = android.widget.TextView(this).apply {
-                    text = "⭐"
-                    textSize = 16f
-                    setPadding(0, 0, 0, 0)
-                    gravity = android.view.Gravity.CENTER
-                }
-                tab.setCustomView(tv)
-            } else {
-                tab.text = when (position) {
-                    0 -> getString(R.string.tab_with_thickeners)
-                    else -> getString(R.string.tab_without_thickeners)
-                }
+            when (position) {
+                0 -> tab.setIcon(R.drawable.ic_add_circle_outline)
+                1 -> tab.setIcon(R.drawable.ic_remove_circle_outline)
+                else -> tab.setIcon(R.drawable.ic_star_circle)
             }
         }.attach()
 
-        val starTabDp = (48 * resources.displayMetrics.density).toInt()
         binding.tabLayout.post {
             val tabStrip = binding.tabLayout.getChildAt(0) as? android.widget.LinearLayout ?: return@post
-            val totalWidth = binding.tabLayout.width
-            val textTabWidth = (totalWidth - starTabDp) / 2
+            val tabWidth = binding.tabLayout.width / tabStrip.childCount
             for (i in 0 until tabStrip.childCount) {
                 tabStrip.getChildAt(i).layoutParams =
-                    tabStrip.getChildAt(i).layoutParams.apply {
-                        width = if (i == 2) starTabDp else textTabWidth
-                    }
+                    tabStrip.getChildAt(i).layoutParams.apply { width = tabWidth }
             }
             tabStrip.requestLayout()
         }
@@ -207,7 +194,9 @@ class MainActivity : AppCompatActivity() {
                     (checked[2] && recipe.ingredients.any { thickenerRegex.containsMatchIn(it) }) ||
                     (checked[3] && recipe.ingredients.none { thickenerRegex.containsMatchIn(it) })
                 }) { json ->
-                    val file = java.io.File(cacheDir, "recipes.json")
+                    val timestamp = java.time.LocalDateTime.now()
+                        .format(java.time.format.DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm"))
+                    val file = java.io.File(cacheDir, "recipes_share_$timestamp.json")
                     file.writeText(json)
                     val uri = androidx.core.content.FileProvider.getUriForFile(this, "${packageName}.fileprovider", file)
                     val shareIntent = android.content.Intent(android.content.Intent.ACTION_SEND).apply {
@@ -223,24 +212,11 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun exportRecipesAsJson() {
-        viewModel.exportRecipes { json ->
-            val file = File(cacheDir, "recipes.json")
-            file.writeText(json)
-            val uri = FileProvider.getUriForFile(this, "${packageName}.fileprovider", file)
-            val shareIntent = Intent(Intent.ACTION_SEND).apply {
-                type = "application/json"
-                putExtra(Intent.EXTRA_STREAM, uri)
-                putExtra(Intent.EXTRA_SUBJECT, getString(R.string.export_subject))
-                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            }
-            startActivity(Intent.createChooser(shareIntent, getString(R.string.action_export)))
-        }
-    }
-
     private fun exportSync() {
         viewModel.exportSync { json ->
-            val file = File(cacheDir, "recipes_sync.json")
+            val timestamp = java.time.LocalDateTime.now()
+                .format(java.time.format.DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm"))
+            val file = File(cacheDir, "recipes_sync_$timestamp.json")
             file.writeText(json)
             val uri = FileProvider.getUriForFile(this, "${packageName}.fileprovider", file)
             val shareIntent = Intent(Intent.ACTION_SEND).apply {

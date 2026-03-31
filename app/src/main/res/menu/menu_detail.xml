@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_toggle_favourite"
+        android:icon="@drawable/ic_star_circle_outline"
+        android:title="@string/action_add_favourite"
+        app:showAsAction="always" />
     <item
         android:id="@+id/action_experiences"
         android:title="@string/action_experiences" />
-    <item
-        android:id="@+id/action_toggle_favourite"
-        android:title="@string/action_add_favourite" />
     <item
         android:id="@+id/action_edit"
         android:title="@string/action_edit" />

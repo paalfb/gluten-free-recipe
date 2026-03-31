@@ -6,7 +6,8 @@
     android:orientation="horizontal"
     android:gravity="center_vertical"
     android:paddingVertical="4dp"
-    android:minHeight="56dp">
+    android:minHeight="56dp"
+    android:background="?attr/selectableItemBackground">
 
     <EditText
         android:id="@+id/editItem"
@@ -18,6 +19,8 @@
         android:inputType="textCapSentences|textMultiLine"
         android:focusable="false"
         android:focusableInTouchMode="false"
+        android:clickable="false"
+        android:longClickable="false"
         android:paddingVertical="8dp"
         android:paddingStart="16dp" />
 
@@ -28,7 +31,8 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/edit_item"
         android:src="@drawable/ic_edit"
-        android:tint="?attr/colorOnSurfaceVariant" />
+        android:tint="?attr/colorOnSurfaceVariant"
+        android:visibility="gone" />
 
     <ImageButton
         android:id="@+id/buttonDelete"
@@ -37,6 +41,7 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/delete_item"
         android:src="@drawable/ic_delete"
-        android:tint="?attr/colorError" />
+        android:tint="?attr/colorError"
+        android:visibility="gone" />
 
 </LinearLayout>

@@ -162,10 +162,6 @@ class ExperiencesActivity : AppCompatActivity() {
                         date = date,
                         note = input.text?.toString()?.trim() ?: ""
                     ))
-                    val recipeDao = AppDatabase.getInstance(this@ExperiencesActivity).recipeDao()
-                    recipeDao.getById(recipeId)?.let { recipe ->
-                        if (!recipe.tested) recipeDao.update(recipe.copy(tested = true))
-                    }
                     loadExperiences()
                 }
             }

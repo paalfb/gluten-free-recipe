@@ -98,7 +98,9 @@ object RecipePdfExporter {
 
         document.finishPage(page)
 
-        val file = File(context.cacheDir, "oppskrifter.pdf")
+        val timestamp = java.time.LocalDateTime.now()
+            .format(java.time.format.DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm"))
+        val file = File(context.cacheDir, "recipes_$timestamp.pdf")
         file.outputStream().use { document.writeTo(it) }
         document.close()
         return file

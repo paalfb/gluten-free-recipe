@@ -113,9 +113,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     newRecipeCount++
                 } else {
                     nameToId[candidate.name] = match.id
-                    if (match.tested != candidate.tested || match.favourite != candidate.favourite) {
+                    if (match.favourite != candidate.favourite) {
                         repository.update(match.copy(
-                            tested = match.tested || candidate.tested,
                             favourite = match.favourite || candidate.favourite
                         ))
                     }
@@ -152,13 +151,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             if (newRecipes.isNotEmpty()) repository.importAll(newRecipes)
             _recipes.value = repository.getAll()
             onComplete(newRecipes.size)
-        }
-    }
-
-    fun toggleTested(recipe: Recipe) {
-        viewModelScope.launch {
-            repository.update(recipe.copy(tested = !recipe.tested))
-            _recipes.value = repository.getAll()
         }
     }
 

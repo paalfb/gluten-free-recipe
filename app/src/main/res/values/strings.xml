@@ -7,6 +7,7 @@
     <string name="empty_with_thickeners">Ingen oppskrifter med fortykningsmidler</string>
     <string name="empty_without_thickeners">Ingen oppskrifter uten fortykningsmidler</string>
     <string name="empty_favourites">Ingen favoritter ennå.\nTrykk stjernen for å legge til.</string>
+    <string name="thickeners_label">Konsistensmidler</string>
     <string name="tab_with_thickeners">+ konsistensmidler</string>
     <string name="tab_without_thickeners">− konsistensmidler</string>
     <string name="tab_calendar">Kalender</string>
@@ -24,6 +25,7 @@
     <string name="category_muffins">Muffins</string>
     <string name="category_waffles">Vafler</string>
     <string name="category_pancakes">Pannekaker</string>
+    <string name="category_pizza">Pizza</string>
     <string name="category_other">Annet</string>
     <string name="add_recipe">Legg til oppskrift</string>
     <string name="hint_recipe_name">Oppskriftsnavn</string>

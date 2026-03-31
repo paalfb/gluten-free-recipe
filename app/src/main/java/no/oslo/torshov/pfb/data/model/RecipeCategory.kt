@@ -14,9 +14,10 @@ object RecipeCategory {
     const val MUFFINS   = "muffins"
     const val WAFFLES   = "waffles"
     const val PANCAKES  = "pancakes"
+    const val PIZZA     = "pizza"
     const val OTHER     = "other"
 
-    val ALL = listOf(BREAD, FLATBREAD, CAKES, COOKIES, BUNS, ROLLS, SCONES, MUFFINS, WAFFLES, PANCAKES, OTHER)
+    val ALL = listOf(BREAD, FLATBREAD, CAKES, COOKIES, BUNS, ROLLS, SCONES, MUFFINS, WAFFLES, PANCAKES, PIZZA, OTHER)
 
     fun displayName(context: Context, key: String): String = when (key) {
         BREAD     -> context.getString(R.string.category_bread)
@@ -29,6 +30,7 @@ object RecipeCategory {
         MUFFINS   -> context.getString(R.string.category_muffins)
         WAFFLES   -> context.getString(R.string.category_waffles)
         PANCAKES  -> context.getString(R.string.category_pancakes)
+        PIZZA     -> context.getString(R.string.category_pizza)
         OTHER     -> context.getString(R.string.category_other)
         // Legacy Norwegian values (pre-v6 migration fallback)
         "Brød"       -> context.getString(R.string.category_bread)

@@ -71,14 +71,12 @@ class MainRecipeListFragment : Fragment() {
                 intent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_ID, recipe.id)
                 startActivity(intent)
             },
-            onLongClick = { recipe -> viewModel.toggleTested(recipe) },
             onExperiencesClick = { recipe ->
                 val intent = Intent(requireContext(), ExperiencesActivity::class.java)
                 intent.putExtra(ExperiencesActivity.EXTRA_RECIPE_ID, recipe.id)
                 intent.putExtra(ExperiencesActivity.EXTRA_RECIPE_NAME, recipe.name)
                 startActivity(intent)
-            },
-            onFavouriteClick = { recipe -> viewModel.toggleFavourite(recipe) }
+            }
         )
         recyclerView.adapter = adapter
 

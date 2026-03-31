@@ -7,6 +7,7 @@
     <string name="empty_with_thickeners">No recipes with thickeners</string>
     <string name="empty_without_thickeners">No recipes without thickeners</string>
     <string name="empty_favourites">No favourites yet.\nTap the star to add one.</string>
+    <string name="thickeners_label">Stabilisers</string>
     <string name="tab_with_thickeners">+ stabilisers</string>
     <string name="tab_without_thickeners">− stabilisers</string>
     <string name="tab_calendar">Calendar</string>
@@ -24,6 +25,7 @@
     <string name="category_muffins">Muffins</string>
     <string name="category_waffles">Waffles</string>
     <string name="category_pancakes">Pancakes</string>
+    <string name="category_pizza">Pizza</string>
     <string name="category_other">Other</string>
     <string name="add_recipe">Add recipe</string>
     <string name="hint_recipe_name">Recipe name</string>

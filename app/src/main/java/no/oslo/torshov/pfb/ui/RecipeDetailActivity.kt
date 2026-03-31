@@ -64,6 +64,7 @@ class RecipeDetailActivity : AppCompatActivity() {
         binding.categoryChip.setOnClickListener { showCategoryDialog() }
 
         binding.viewPager.adapter = RecipePagerAdapter(this)
+        binding.viewPager.currentItem = 0
 
         val tabIcons = listOf(
             R.drawable.ic_tab_ingredients,
@@ -120,9 +121,10 @@ class RecipeDetailActivity : AppCompatActivity() {
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         val isFav = viewModel.isFavourite.value ?: false
-        menu.findItem(R.id.action_toggle_favourite)?.title = getString(
-            if (isFav) R.string.action_remove_favourite else R.string.action_add_favourite
-        )
+        menu.findItem(R.id.action_toggle_favourite)?.apply {
+            setIcon(if (isFav) R.drawable.ic_star_circle else R.drawable.ic_star_circle_outline)
+            title = getString(if (isFav) R.string.action_remove_favourite else R.string.action_add_favourite)
+        }
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -137,7 +139,8 @@ class RecipeDetailActivity : AppCompatActivity() {
                 }
                 .show()
             true
-        }R.id.action_toggle_favourite -> { viewModel.toggleFavourite(); true }
+        }
+        R.id.action_toggle_favourite -> { viewModel.toggleFavourite(); true }
         
         R.id.action_experiences -> { openExperiences(); true }
         R.id.action_delete_recipe -> { confirmDelete(); true }
@@ -229,7 +232,8 @@ class RecipeDetailActivity : AppCompatActivity() {
         val categories = RecipeCategory.ALL.toTypedArray()
         val displayNames = categories.map { RecipeCategory.displayName(this, it) }.toTypedArray()
         val currentCategory = viewModel.category.value ?: RecipeCategory.OTHER
-        val checkedIndex = categories.indexOf(currentCategory).coerceAtLeast(0)
+        val currentDisplayName = RecipeCategory.displayName(this, currentCategory)
+        val checkedIndex = displayNames.indexOf(currentDisplayName).coerceAtLeast(0)
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.category_title)
             .setSingleChoiceItems(displayNames, checkedIndex) { dialog, which ->
@@ -273,8 +277,10 @@ class RecipeDetailActivity : AppCompatActivity() {
     private fun shareRecipe() {
         viewModel.exportRecipe { json ->
             val safeName = (viewModel.recipeName.value ?: "recipe")
-                .replace(Regex("[^\\w\\s-]"), "").trim().replace(' ', '_')
-            val file = File(cacheDir, "$safeName.json")
+                .replace(Regex("[^\\w\\s-]"), "").trim().replace(' ', '_').lowercase()
+            val timestamp = java.time.LocalDateTime.now()
+                .format(java.time.format.DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm"))
+            val file = File(cacheDir, "${safeName}_$timestamp.json")
             file.writeText(json)
             val uri = FileProvider.getUriForFile(this, "${packageName}.fileprovider", file)
             val shareIntent = Intent(Intent.ACTION_SEND).apply {
