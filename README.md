@@ -30,6 +30,46 @@ An Android app for managing gluten-free recipes, built with Kotlin and MVVM arch
 - KSP (Kotlin Symbol Processing)
 - kizitonwose/calendar-view 2.5.0
 
+## Building & Development
+
+### Debug Builds
+Debug builds require no additional setup:
+```bash
+./gradlew installDebug
+# or
+./gradlew assembleDebug
+```
+
+The app uses Android's built-in debug keystore automatically.
+
+### Release Builds (Local Testing)
+You can build release APKs locally without signing credentials:
+```bash
+./gradlew assembleRelease
+```
+
+Without a keystore, release builds will be signed with the debug key, making them unsuitable for distribution but fine for local testing.
+
+### Release Builds with Production Credentials
+When you're ready to sign with production credentials:
+
+1. Generate or obtain a keystore file (see [Android documentation](https://developer.android.com/studio/publish/app-signing))
+2. Create `keystore.properties` in the project root:
+   ```properties
+   storeFile=/path/to/your/app.keystore
+   storePassword=your_keystore_password
+   keyAlias=your_key_alias
+   keyPassword=your_key_password
+   ```
+   > **Important**: Never commit `keystore.properties` to git. It's in `.gitignore` for security.
+
+3. Build the release APK (now with production signing):
+   ```bash
+   ./gradlew assembleRelease
+   ```
+
+The gradle configuration automatically detects the keystore file and applies production signing when present.
+
 ## Package Structure
 
 ```
