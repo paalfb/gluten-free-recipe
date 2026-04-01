@@ -11,23 +11,24 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.tabs.TabLayoutMediator
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import no.oslo.torshov.pfb.R
 import no.oslo.torshov.pfb.databinding.ActivityMainBinding
-import no.oslo.torshov.pfb.ui.adapter.MainPagerAdapter
+import no.oslo.torshov.pfb.ui.fragment.FilterBottomSheetFragment
+import no.oslo.torshov.pfb.ui.fragment.MainRecipeListFragment
 import no.oslo.torshov.pfb.ui.viewmodel.MainViewModel
+import no.oslo.torshov.pfb.ui.viewmodel.StabiliserFilter
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_OPEN_CALENDAR_DATE = "open_calendar_date"
-        private const val CALENDAR_TAB_INDEX = 2
     }
 
     private lateinit var binding: ActivityMainBinding
@@ -43,30 +44,52 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-        val pagerAdapter = MainPagerAdapter(this)
-        binding.viewPager.adapter = pagerAdapter
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            when (position) {
-                0 -> tab.setIcon(R.drawable.ic_add_circle_outline)
-                1 -> tab.setIcon(R.drawable.ic_remove_circle_outline)
-                else -> tab.setIcon(R.drawable.ic_star_circle)
-            }
-        }.attach()
+        if (savedInstanceState == null) {
+            val favouritesFragment = MainRecipeListFragment.newFavourites()
+            val recipesFragment = MainRecipeListFragment.newInstance()
+            supportFragmentManager.beginTransaction()
+                .add(R.id.fragmentContainer, favouritesFragment, "favourites")
+                .add(R.id.fragmentContainer, recipesFragment, "recipes")
+                .hide(favouritesFragment)
+                .commit()
+        }
 
-        binding.tabLayout.post {
-            val tabStrip = binding.tabLayout.getChildAt(0) as? android.widget.LinearLayout ?: return@post
-            val tabWidth = binding.tabLayout.width / tabStrip.childCount
-            for (i in 0 until tabStrip.childCount) {
-                tabStrip.getChildAt(i).layoutParams =
-                    tabStrip.getChildAt(i).layoutParams.apply { width = tabWidth }
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            val recipesFragment = supportFragmentManager.findFragmentByTag("recipes") ?: return@setOnItemSelectedListener false
+            val favouritesFragment = supportFragmentManager.findFragmentByTag("favourites") ?: return@setOnItemSelectedListener false
+            when (item.itemId) {
+                R.id.nav_recipes -> {
+                    supportFragmentManager.beginTransaction()
+                        .show(recipesFragment).hide(favouritesFragment).commit()
+                    true
+                }
+                R.id.nav_favourites -> {
+                    supportFragmentManager.beginTransaction()
+                        .show(favouritesFragment).hide(recipesFragment).commit()
+                    true
+                }
+                else -> false
             }
-            tabStrip.requestLayout()
         }
 
         viewModel.loadBundledRecipes()
         binding.fab.setOnClickListener { showAddRecipeDialog() }
 
+        viewModel.stabiliserFilter.observe(this) { updateFilterIcon() }
+        viewModel.categoryFilter.observe(this) { updateFilterIcon() }
+
         if (savedInstanceState == null) handleIncomingIntent(intent)
+    }
+
+    private fun updateFilterIcon() {
+        val menuItem = binding.toolbar.menu.findItem(R.id.action_filter) ?: return
+        val active = viewModel.stabiliserFilter.value != StabiliserFilter.ALL
+                || viewModel.categoryFilter.value != null
+        val attr = if (active) com.google.android.material.R.attr.colorPrimary
+                   else com.google.android.material.R.attr.colorOnSurface
+        val tv = android.util.TypedValue()
+        theme.resolveAttribute(attr, tv, true)
+        menuItem.iconTintList = android.content.res.ColorStateList.valueOf(tv.data)
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -86,10 +109,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
+        updateFilterIcon()
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.action_filter -> {
+            FilterBottomSheetFragment().show(supportFragmentManager, FilterBottomSheetFragment.TAG)
+            true
+        }
         R.id.action_export -> { showShareDialog(); true }
         R.id.action_sync -> { exportSync(); true }
         R.id.action_export_pdf -> { exportRecipesAsPdf(); true }

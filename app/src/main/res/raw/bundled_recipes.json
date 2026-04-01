@@ -314,6 +314,41 @@
       "emoji": "🫓"
     },
     {
+      "name": "Naan (E415)",
+      "category": "Brød",
+      "ingredients": [
+        "400 g Semper Mix Fiber melblanding",
+        "1 ts xantangummi (E415)",
+        "1 pose tørrgjær",
+        "1 ts salt",
+        "1 ss sukker",
+        "2 dl yoghurt naturell",
+        "2–2.5 dl lunkent vann",
+        "2 ss olje"
+      ],
+      "steps": [
+        "Visp xantangummi (E415) inn i det lunkne vannet til det er jevnt fordelt.",
+        "La blandingen stå i 5–10 minutter slik at den tykner lett.",
+        "Bland mel, tørrgjær, salt og sukker i en bolle.",
+        "Tilsett yoghurt, olje og væsken med hydrert xantangummi.",
+        "Rør eller elt i 5–8 minutter til en jevn og klisset deig.",
+        "La deigen heve tildekket i 45–60 minutter.",
+        "Del deigen i emner og trykk eller kjevle flate brød.",
+        "Stek i veldig varm, tørr stekepanne 2–3 minutter per side.",
+        "Pensle gjerne med smør etter steking."
+      ],
+      "tips": [
+        "Hydrert xantangummi gir mer elastisk og smidig deig.",
+        "Juster vannmengden – deigen skal være myk og litt klisset.",
+        "Stek på høy varme for best resultat."
+      ],
+      "commonMistakes": [
+        "Ikke hydrere xantangummi – kan gi ujevn tekstur.",
+        "For tørr deig gir harde naan.",
+        "For lav varme gir bleke brød."
+      ]
+    },
+    {
       "name": "Naan  (E415,E464)",
       "category": "Brød",
       "ingredients": [
@@ -851,6 +886,156 @@
         "Ikke la røren hvile – gir dårligere resultat."
       ],
       "emoji": "🧇"
+    },
+    {
+      "name": "Pizzabunn (E415 og E464)",
+      "category": "Pizza",
+      "ingredients": [
+        "500 g Semper Mix Fiber melblanding",
+        "1 ts xantangummi (E415)",
+        "1 ts HPMC (E464)",
+        "1 pose tørrgjær",
+        "1 ts salt",
+        "1 ss sukker",
+        "3.5 dl lunkent vann",
+        "2 ss olivenolje"
+      ],
+      "steps": [
+        "Visp xantangummi (E415) og HPMC (E464) inn i det lunkne vannet til det er jevnt fordelt.",
+        "La blandingen stå i 5–10 minutter slik at den tykner lett.",
+        "Bland mel, tørrgjær, salt og sukker i en bolle.",
+        "Tilsett væsken med hydrerte bindemidler og olivenolje.",
+        "Rør eller elt godt i 6–10 minutter til en jevn, klisset deig.",
+        "La deigen heve tildekket i 45–60 minutter.",
+        "Forvarm ovnen til 250°C (eller maks temperatur) med stekebrett eller pizzastein inni.",
+        "Ha deigen på bakepapir og trykk den ut til ønsket pizzastørrelse med fuktige hender.",
+        "Forstek bunnen i 5–7 minutter.",
+        "Ta ut bunnen, legg på saus og topping.",
+        "Stek videre i 8–12 minutter til ferdig stekt."
+      ],
+      "tips": [
+        "For tynn og sprø bunn: bruk litt mindre vann og trykk deigen tynnere.",
+        "For luftig bunn: la deigen heve litt lengre og håndter den forsiktig.",
+        "Bruk høy temperatur – det er nøkkelen til god pizzabunn.",
+        "Fukt hendene når du former deigen – den skal være klissete."
+      ],
+      "commonMistakes": [
+        "For lite væske gir tørr og kompakt bunn.",
+        "For mye bindemiddel gir gummiaktig tekstur.",
+        "Ikke forvarme ovnen godt nok – gir dårlig stekeskorpe.",
+        "Droppe forsteking – kan gi bløt bunn."
+      ]
+    },
+    {
+      "name": "Pizzabunn (E464)",
+      "category": "Pizza",
+      "ingredients": [
+        "500 g Semper Mix Fiber melblanding",
+        "1.5 ts HPMC (E464)",
+        "1 pose tørrgjær",
+        "1 ts salt",
+        "1 ss sukker",
+        "3.7 dl lunkent vann",
+        "2 ss olivenolje"
+      ],
+      "steps": [
+        "Visp HPMC (E464) inn i det lunkne vannet til det er jevnt fordelt.",
+        "La blandingen stå i 5–10 minutter slik at den begynner å tykne.",
+        "Bland mel, tørrgjær, salt og sukker i en bolle.",
+        "Tilsett væsken og olivenolje.",
+        "Rør eller elt godt i 6–10 minutter til en jevn, klisset deig.",
+        "La deigen heve tildekket i 45–60 minutter.",
+        "Forvarm ovnen til 250°C (eller maks temperatur) med stekebrett eller pizzastein inni.",
+        "Ha deigen på bakepapir og trykk den ut til ønsket størrelse med fuktige hender.",
+        "Forstek bunnen i 6–8 minutter.",
+        "Ta ut bunnen, legg på saus og topping.",
+        "Stek videre i 8–12 minutter til ferdig stekt."
+      ],
+      "tips": [
+        "E464 gir best resultat når det hydreres før bruk.",
+        "Deigen skal være litt løs og klisset for luftig resultat.",
+        "Stek på høy varme for best skorpe.",
+        "La bunnen få litt farge før du legger på topping."
+      ],
+      "commonMistakes": [
+        "For lite hydrering av E464 gir dårlig struktur.",
+        "For lite væske gir kompakt bunn.",
+        "For lav temperatur gir blek og myk pizza.",
+        "For mye E464 kan gi litt seig tekstur."
+      ]
+    },
+    {
+      "name": "Pizzabunn (E415)",
+      "category": "Pizza",
+      "ingredients": [
+        "500 g Semper Mix Fiber melblanding",
+        "1 ts xantangummi (E415)",
+        "1 pose tørrgjær",
+        "1 ts salt",
+        "1 ss sukker",
+        "3.3–3.5 dl lunkent vann",
+        "2 ss olivenolje"
+      ],
+      "steps": [
+        "Visp xantangummi (E415) inn i det lunkne vannet til det er jevnt fordelt.",
+        "La blandingen stå i 5–10 minutter slik at den tykner lett.",
+        "Bland mel, tørrgjær, salt og sukker i en bolle.",
+        "Tilsett væsken og olivenolje.",
+        "Rør eller elt i 5–8 minutter til en jevn og klisset deig.",
+        "La deigen heve tildekket i 45–60 minutter.",
+        "Forvarm ovnen til 250°C (eller maks temperatur) med stekebrett eller pizzastein inni.",
+        "Ha deigen på bakepapir og trykk den ut til ønsket størrelse.",
+        "Forstek bunnen i 5–7 minutter.",
+        "Ta ut bunnen, legg på saus og topping.",
+        "Stek videre i 8–12 minutter til ferdig stekt."
+      ],
+      "tips": [
+        "Hydrert xantangummi gir jevnere struktur og bedre elastisitet.",
+        "Deigen skal være klisset – ikke tilsett for mye mel.",
+        "Høy temperatur gir best skorpe."
+      ],
+      "commonMistakes": [
+        "Ikke hydrere xantangummi først – kan gi klumper.",
+        "For lite væske gir tørr bunn.",
+        "For lav temperatur gir dårlig stekeskorpe."
+      ]
+    },
+    {
+      "name": "Pizzabunn (psyllium)",
+      "category": "Pizza",
+      "ingredients": [
+        "500 g Semper Mix Fiber melblanding",
+        "2 ss psyllium husk (loppefrøskall)",
+        "1 pose tørrgjær",
+        "1 ts salt",
+        "1 ss sukker",
+        "4 dl lunkent vann",
+        "2 ss olivenolje"
+      ],
+      "steps": [
+        "Bland psyllium husk med lunkent vann og la det svelle i 5–10 minutter til en gelé.",
+        "Bland mel, tørrgjær, salt og sukker i en bolle.",
+        "Tilsett psyllium-geléen og olivenolje.",
+        "Rør eller elt i 5–8 minutter til en jevn og klisset deig.",
+        "La deigen heve tildekket i 45–60 minutter.",
+        "Forvarm ovnen til 250°C (eller maks temperatur) med stekebrett eller pizzastein inni.",
+        "Ha deigen på bakepapir og trykk den ut til ønsket størrelse.",
+        "Forstek bunnen i 6–8 minutter.",
+        "Ta ut bunnen, legg på saus og topping.",
+        "Stek videre i 8–12 minutter til ferdig stekt."
+      ],
+      "tips": [
+        "Psyllium gir god struktur hvis det får svelle skikkelig.",
+        "Deigen skal være myk og litt klisset – ikke tilsett for mye mel.",
+        "Bruk høy temperatur for best resultat.",
+        "La bunnen få litt farge før topping for sprøere pizza."
+      ],
+      "commonMistakes": [
+        "Ikke la psyllium svelle – gir dårlig binding.",
+        "For lite væske gir tørr og kompakt bunn.",
+        "For lav temperatur gir blek og myk skorpe.",
+        "For tykk utforming gir tung pizzabunn."
+      ]
     }
   ]
 }

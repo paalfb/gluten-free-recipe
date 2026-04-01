@@ -8,8 +8,8 @@ An Android app for managing gluten-free recipes, built with Kotlin and MVVM arch
 - **Emoji icons** — assign up to 2 emojis per recipe via a visual picker; ignored when sorting alphabetically
 - **Ingredients & steps** — inline editing with tap-to-reveal edit/delete buttons and long-press drag-to-reorder; persistent "+ Add" footer row at the bottom of each list
 - **Categories** — filter recipes by type (Bread, Flatbread, Cakes, Cookies, Buns, Rolls, Scones, Muffins, Waffles, Pancakes, Pizza, Other); localised based on device language; only categories with matching recipes are shown
-- **Stabiliser tabs** — three equal-width tabs labelled under "Konsistensmidler / Stabilisers": ⊕ with E400–E499 thickeners, ⊖ without, and ★ Favourites
-- **Favourites** — star any recipe from the recipe detail toolbar; dedicated tab shows only starred recipes; starred recipes show a circle-star icon in the recipe list
+- **Stabiliser filter** — filter recipes by stabiliser content via a bottom sheet: All, E415 only, E464 only, Both, or None; applies to both the Recipes and Favourites pages; a badge on the filter icon indicates when a non-default filter is active
+- **Favourites** — star any recipe from the recipe detail toolbar; dedicated page (swipe or bottom nav) shows only starred recipes; starred recipes show a circle-star icon in the recipe list; category and stabiliser filters apply independently on the Favourites page
 - **Erfaringer (Experiences)** — log notes per bake with date; accessible from recipe menu or recipe list icon
 - **Calendar** — browse experiences by date; tap a day to see all experiences registered that day; accessible directly from the main toolbar
 - **Tips & common mistakes** — freetext tabs per recipe
@@ -25,7 +25,7 @@ An Android app for managing gluten-free recipes, built with Kotlin and MVVM arch
 - Kotlin
 - MVVM (ViewModel + LiveData)
 - Room (local database, v8)
-- ViewPager2 + TabLayout
+- BottomNavigationView + FragmentContainerView
 - Material Design 3
 - KSP (Kotlin Symbol Processing)
 - kizitonwose/calendar-view 2.5.0

@@ -6,22 +6,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!-- Category filter chips (always visible) -->
     <HorizontalScrollView
-        android:id="@+id/categoryScrollView"
+        android:id="@+id/filterChipsScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
-        android:visibility="gone">
+        android:paddingBottom="4dp">
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/categoryChipGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:singleLine="true"
-            app:singleSelection="true"
-            app:selectionRequired="true" />
+            android:visibility="gone"
+            app:singleLine="true" />
 
     </HorizontalScrollView>
 

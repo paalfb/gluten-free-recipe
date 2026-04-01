@@ -7,11 +7,15 @@
     <string name="empty_with_thickeners">Ingen oppskrifter med fortykningsmidler</string>
     <string name="empty_without_thickeners">Ingen oppskrifter uten fortykningsmidler</string>
     <string name="empty_favourites">Ingen favoritter ennå.\nTrykk stjernen for å legge til.</string>
+    <string name="stabiliser_both">Begge</string>
+    <string name="stabiliser_none">Ingen</string>
+    <string name="empty_filtered">Ingen oppskrifter matcher valgte filter</string>
     <string name="thickeners_label">Konsistensmidler</string>
     <string name="tab_with_thickeners">+ konsistensmidler</string>
     <string name="tab_without_thickeners">− konsistensmidler</string>
     <string name="tab_calendar">Kalender</string>
     <string name="tab_favourites">Favoritter</string>
+    <string name="tab_recipes">Oppskrifter</string>
     <string name="day_note_hint">Skriv notater for denne dagen…</string>
     <string name="category_title">Velg kategori</string>
     <string name="category_all">Alle</string>

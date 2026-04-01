@@ -7,11 +7,15 @@
     <string name="empty_with_thickeners">No recipes with thickeners</string>
     <string name="empty_without_thickeners">No recipes without thickeners</string>
     <string name="empty_favourites">No favourites yet.\nTap the star to add one.</string>
+    <string name="stabiliser_both">Both</string>
+    <string name="stabiliser_none">None</string>
+    <string name="empty_filtered">No recipes match the selected filters</string>
     <string name="thickeners_label">Stabilisers</string>
     <string name="tab_with_thickeners">+ stabilisers</string>
     <string name="tab_without_thickeners">− stabilisers</string>
     <string name="tab_calendar">Calendar</string>
     <string name="tab_favourites">Favourites</string>
+    <string name="tab_recipes">Recipes</string>
     <string name="day_note_hint">Write notes for this day…</string>
     <string name="category_title">Select category</string>
     <string name="category_all">All</string>

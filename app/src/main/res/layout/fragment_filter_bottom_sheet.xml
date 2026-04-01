@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="32dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/thickeners_label"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
+        android:layout_marginBottom="8dp" />
+
+    <RadioGroup
+        android:id="@+id/stabiliserRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/radioAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/category_all" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/radioE415"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E415" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/radioE464"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E464" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/radioBoth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stabiliser_both" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/radioNone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stabiliser_none" />
+
+    </RadioGroup>
+
+</LinearLayout>
